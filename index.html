@@ -1,100 +1,162 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Routine - Tarek</title>
+    <title>Routine - Department of Construction</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; table-layout: fixed; }
-        th, td { border: 1px solid #000; padding: 10px; text-align: center; font-size: 13px; }
-        
-        /* কোনাকুনি ভাগের স্টাইল */
-        .split-header {
-            background: linear-gradient(to top right, transparent calc(50% - 0.5px), black, transparent calc(50% + 0.5px));
-            position: relative;
-            height: 60px;
-            width: 120px;
-        }
-        .split-header .time {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-        }
-        .split-header .period {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
+        /* ওভারঅল পেজ সেটআপ */
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px;
+            background-color: #f4f4f4;
         }
 
-        th { background-color: #f9f9f9; }
-        .day-col { font-weight: bold; width: 100px; }
+        /* টেবিল কন্টেইনার */
+        .routine-container {
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 1000px; /* স্ট্যান্ডার্ড ল্যান্ডস্কেপ উইথ */
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            table-layout: fixed; /* সব কলামের সাইজ সমান রাখার জন্য */
+        }
+
+        th, td { 
+            border: 1px solid #333; 
+            padding: 8px 4px; 
+            text-align: center; 
+            font-size: 12px; 
+            word-wrap: break-word;
+        }
+
+        /* হেডার স্টাইল */
+        .top-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* কোনাকুনি ভাগ করা ঘর (Time/Period) */
+        .split-header {
+            background: linear-gradient(to top right, transparent calc(50% - 0.5px), #333, transparent calc(50% + 0.5px));
+            position: relative;
+            height: 60px;
+        }
+
+        .split-header .time-label {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-size: 11px;
+        }
+
+        .split-header .period-label {
+            position: absolute;
+            bottom: 5px;
+            left: 8px;
+            font-size: 11px;
+        }
+
+        /* নির্দিষ্ট কলামের উইথ */
+        .day-column { width: 100px; font-weight: bold; background-color: #f9f9f9; }
+        .period-header { background-color: #f2f2f2; }
+
+        /* ল্যাব ক্লাস হাইলাইট */
+        .lab-cell {
+            background-color: #fafafa;
+            font-style: italic;
+        }
+
+        .footer-note {
+            margin-top: 10px;
+            font-size: 10px;
+            line-height: 1.2;
+            color: #555;
+        }
     </style>
 </head>
 <body>
 
-    <h2 style="text-align: center;">DEPARTMENT: CONSTRUCTION (5th Semester)</h2>
+<div class="routine-container">
+    <div class="top-info">
+        <span>DEPARTMENT: CONSTRUCTION</span>
+        <span>Semester: 5th</span>
+        <span>Total Load: 28</span>
+    </div>
 
     <table>
         <thead>
             <tr>
-                <!-- একই ঘরে Time এবং Period ভাগ করা হয়েছে -->
-                <th class="split-header">
-                    <span class="time">Time</span>
-                    <span class="period">Period</span>
+                <th class="split-header day-column">
+                    <span class="time-label">Day/Time</span>
+                    <span class="period-label">Period</span>
                 </th>
-                <th>1<br><small>1:30-2:15</small></th>
-                <th>2<br><small>2:15-3:00</small></th>
-                <th>3<br><small>3:00-3:45</small></th>
-                <th>4<br><small>3:45-4:30</small></th>
-                <th>5<br><small>4:30-5:15</small></th>
-                <th>6<br><small>5:15-6:00</small></th>
+                <th class="period-header">1<br>1:30-2:15</th>
+                <th class="period-header">2<br>2:15-3:00</th>
+                <th class="period-header">3<br>3:00-3:45</th>
+                <th class="period-header">4<br>3:45-4:30</th>
+                <th class="period-header">5<br>4:30-5:15</th>
+                <th class="period-header">6<br>5:15-6:00</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="day-col">Sunday</td>
-                <td>26452<br>Mr. X<br>Lab</td>
+                <td class="day-column">Sunday</td>
+                <td>26452<br>Mr. X (ConT)<br>Cad Lab/123</td>
                 <td>29041<br>AL<br>121</td>
                 <td>26455<br>MH<br>121</td>
                 <td>26451<br>SAP<br>121</td>
-                <td>26453<br>Mr. X<br>121</td>
+                <td>26453<br>Mr. X (ConT)<br>121</td>
                 <td>-</td>
             </tr>
             <tr>
-                <td class="day-col">Monday</td>
+                <td class="day-column">Monday</td>
                 <td>26454<br>SAP<br>121</td>
-                <td>25852<br>MH<br>121</td>
-                <td>26453<br>Mr. X<br>121</td>
-                <td colspan="2">26451 (Lab)<br>Soil Lab</td>
+                <td>25852<br>MH (RS)<br>121</td>
+                <td>26453<br>Mr. X (ConT)<br>121</td>
+                <td colspan="2" class="lab-cell">26451<br>SAP<br>HL/Soil Lab (124)</td>
                 <td>-</td>
             </tr>
             <tr>
-                <td class="day-col">Tuesday</td>
+                <td class="day-column">Tuesday</td>
                 <td>26454<br>SAP<br>121</td>
-                <td colspan="2">26452 (Lab)<br>CAD Lab</td>
+                <td colspan="2" class="lab-cell">26452<br>Mr. X (ConT)<br>Cad Lab/123</td>
                 <td>26455<br>MH<br>121</td>
                 <td>-</td>
                 <td>-</td>
             </tr>
             <tr>
-                <td class="day-col">Wednesday</td>
-                <td>29041<br>AL<br>Lab</td>
+                <td class="day-column">Wednesday</td>
+                <td>29041<br>AL<br>EnvT. Lab (124)</td>
                 <td>26451<br>SAP<br>121</td>
-                <td>25852<br>MH<br>121</td>
-                <td colspan="2">26453 (Lab)<br>Field</td>
+                <td>25852<br>MH (RS)<br>121</td>
+                <td colspan="2" class="lab-cell">26453<br>Mr. X (ConT)<br>Institute Field/119</td>
                 <td>-</td>
             </tr>
             <tr>
-                <td class="day-col">Thursday</td>
+                <td class="day-column">Thursday</td>
                 <td>26454<br>SAP<br>121</td>
-                <td>26452<br>Mr. X<br>121</td>
+                <td>26452<br>Mr. X (ConT)<br>121</td>
                 <td>29041<br>AL<br>121</td>
-                <td colspan="2">26455 (Lab)<br>Soil Lab</td>
+                <td colspan="2" class="lab-cell">26455<br>MH<br>HL/Soil Lab (124)</td>
                 <td>-</td>
             </tr>
         </tbody>
     </table>
+
+    <div class="footer-note">
+        25852 = Industrial Management, 26451 = Foundation Engineering, 26452 = Civil Cad-II, 26453 = Surveying-III, 26454 = Theory of Structure, 26455 = Water Supply Engineering, 29041 = Environmental Studies.
+    </div>
+</div>
 
 </body>
 </html>
