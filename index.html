@@ -3,35 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Routine - Construction 5th</title>
+    <title>Routine - Construction 5th (Tarek)</title>
     <style>
-        /* 16:9 রেশিও এবং মোবাইল ভিউ সেটআপ */
+        /* মোবাইল ফুল স্ক্রিন এবং ১৬:৯ ফোকাস */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            background-color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfdfd;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            overflow-x: hidden;
         }
 
+        /* মেইন কন্টেইনার */
         .container {
-            width: 98vw; /* মোবাইলের স্ক্রিন অনুযায়ী চওড়া */
+            width: 98vw; 
             max-width: 1200px;
             margin: 10px auto;
-            border: 1px solid #000;
+            border: 2px solid #333;
             padding: 5px;
+            background-color: #fff;
+            position: relative; /* ওয়াটারমার্কের জন্য */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ওয়াটারমার্ক (Tarek Shikdar) */
+        .watermark {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: clamp(40px, 8vw, 80px);
+            color: rgba(0, 0, 0, 0.05); /* হালকা ঝাপসা কালো রঙ */
+            font-weight: bold;
+            white-space: nowrap;
+            pointer-events: none; /* যাতে টেবিল সিলেক্ট করতে সমস্যা না হয় */
+            z-index: 0;
         }
 
         .header-text {
             display: flex;
             justify-content: space-between;
             font-weight: bold;
-            font-size: clamp(10px, 2vw, 16px); /* স্ক্রিন অনুযায়ী ফন্ট ছোট-বড় হবে */
-            padding: 5px;
-            border-bottom: 2px solid black;
-            text-transform: uppercase;
+            font-size: clamp(12px, 2vw, 18px);
+            padding: 8px;
+            border-bottom: 3px double #333;
+            background-color: #f1f1f1;
+            z-index: 1;
+            position: relative;
         }
 
         table {
@@ -39,63 +59,77 @@
             border-collapse: collapse;
             table-layout: fixed; 
             margin-top: 5px;
+            z-index: 1;
+            position: relative;
+            background-color: transparent;
         }
 
         th, td {
-            border: 1.5px solid black;
-            padding: 4px 2px;
+            border: 1.5px solid #000;
+            padding: 6px 2px;
             text-align: center;
-            font-size: clamp(8px, 1.5vw, 12px); /* টেক্সট যেন ভেঙে না যায় */
+            font-size: clamp(8px, 1.4vw, 12px);
             font-weight: bold;
             line-height: 1.2;
             word-wrap: break-word;
         }
 
-        /* Diagonal Header (Time/Period) */
+        /* Diagonal Header (Period/Day-Time) */
         .split-header {
-            background: linear-gradient(to top right, transparent calc(50% - 1px), black 50%, transparent calc(50% + 1px));
+            background: linear-gradient(to top right, transparent calc(50% - 1px), #000 50%, transparent calc(50% + 1px));
             position: relative;
-            height: 50px; /* মোবাইল ভিউতে হাইট কিছুটা কমানো */
+            height: 65px;
         }
 
-        .split-header .time-text {
+        .split-header .top-right {
             position: absolute;
-            top: 2px;
-            right: 4px;
-            font-size: 0.8em;
+            top: 5px;
+            right: 8px;
+            color: #d32f2f; /* পিরিয়ড হাইলাইট করার জন্য লালচে রঙ */
         }
 
-        .split-header .period-text {
+        .split-header .bottom-left {
             position: absolute;
-            bottom: 2px;
-            left: 4px;
-            font-size: 0.8em;
+            bottom: 5px;
+            left: 8px;
         }
 
-        /* কলামের উইথ এবং কালার */
         .day-col {
-            background-color: #f2f2f2;
-            width: 12%; 
+            background-color: #f9f9f9;
+            width: 11%;
+            color: #1a237e; /* দিনের নাম নীল রঙের */
         }
 
         .time-header {
-            background-color: #e6e6e6;
+            background-color: #e0e0e0;
+            height: 45px;
         }
 
-        /* ল্যাব ক্লাসের জন্য হালকা হাইলাইট */
+        /* ল্যাব ক্লাস হাইলাইট */
         td[colspan] {
-            background-color: #fdfdfd;
+            background-color: rgba(245, 245, 245, 0.5);
+            border-bottom: 2px solid #000;
         }
 
-        /* ছোট স্ক্রিনে অটো রোটেট সাজেশন এর জন্য */
+        /* ক্রেডিট টেক্সট (নিচে) */
+        .credit-footer {
+            text-align: right;
+            font-size: 10px;
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* ল্যান্ডস্কেপ মোড ওয়ার্নিং */
         @media screen and (orientation: portrait) {
             body::before {
                 content: "Please rotate your phone to Landscape mode 🔄";
                 position: fixed;
-                top: 0; left: 0; width: 100%; height: 30px;
-                background: #ffecb3; color: #856404;
-                text-align: center; font-size: 12px; line-height: 30px;
-                z-index: 1000;
+                top: 0; left: 0; width: 100%; height: 100%;
+                background: white; color: black;
+                display: flex; align-items: center; justify-content: center;
+                z-index: 9999; font-weight: bold; text-align: center;
+                padding: 20px;
             }
         }
     </style>
@@ -103,18 +137,20 @@
 <body>
 
 <div class="container">
+    <div class="watermark">Tarek Shikdar</div>
+
     <div class="header-text">
         <span>Dept: Construction</span>
         <span>Semester: 5th</span>
-        <span>Load: 28</span>
+        <span>Routine 2026</span>
     </div>
 
     <table>
         <thead>
             <tr class="time-header">
                 <th class="split-header day-col">
-                    <span class="time-text">Period</span>
-                    <span class="period-text">Day/Time</span>
+                    <span class="top-right">Period</span>
+                    <span class="bottom-left">Day/Time</span>
                 </th>
                 <th>1<br>1:30-2:15</th>
                 <th>2<br>2:15-3:00</th>
@@ -128,49 +164,51 @@
         <tbody>
             <tr>
                 <td class="day-col">Sunday</td>
-                <td colspan="2">Civil Cad-2<br>Mr. X (ConT)<br>Cad Lab/123</td>
-                <td>Environmental Studies<br>AL<br>121</td>
-                <td>Water Supply Engineering<br>MH<br>121</td>
-                <td>Foundation Engineering<br>SAP<br>121</td>
-                <td>Surveying-III<br>Mr. X (ConT)<br>121</td>
+                <td colspan="2">Civil Cad-2<br>Mr. X (Cad Lab)</td>
+                <td>Env. Studies<br>AL (121)</td>
+                <td>Water Supply<br>MH (121)</td>
+                <td>Foundation Eng.<br>SAP (121)</td>
+                <td>Surveying-III<br>Mr. X (121)</td>
                 <td>-</td>
             </tr>
             <tr>
                 <td class="day-col">Monday</td>
-                <td>Theory of Structure<br>SAP<br>121</td>
-                <td>Industrial Management<br>MH (RS)<br>121</td>
-                <td>Surveying-III<br>Mr. X (ConT)<br>121</td>
-                <td colspan="2">Foundation Engineering<br>SAP<br>Soil Lab (124)</td>
+                <td>Theory of Str.<br>SAP (121)</td>
+                <td>Ind. Mgmt<br>MH (RS)</td>
+                <td>Surveying-III<br>Mr. X (121)</td>
+                <td colspan="2">Foundation Eng.<br>Soil Lab (124)</td>
                 <td>-</td>
                 <td>-</td>
             </tr>
             <tr>
                 <td class="day-col">Tuesday</td>
-                <td colspan="2"> Theory of Structure <br>SAP<br>121</td>
-                <td colspan="2"> Civil CAD-II <br>Mr. X (ConT)<br>Cad Lab/123</td>
-                <td> Water Supply Engineering <br>MH<br>121</td>
+                <td colspan="2">Theory of Structure<br>SAP (121)</td>
+                <td colspan="2">Civil CAD-II<br>Mr. X (Lab)</td>
+                <td>Water Supply<br>MH (121)</td>
                 <td>-</td>
                 <td>-</td>
             </tr>
             <tr>
                 <td class="day-col">Wednesday</td>
-                <td colspan="2"> Environmental Studies <br>AL<br>EnvT. Lab (124)</td>
-                <td> Foundation Engineering <br>SAP<br>121</td>
-                <td> Industrial Management <br>MH (RS)<br>121</td>
-                <td colspan="2"> Surveying-III <br>Mr. X (ConT)<br>Field/119</td>
+                <td colspan="2">Env. Studies<br>EnvT. Lab</td>
+                <td>Foundation Eng.<br>SAP (121)</td>
+                <td>Ind. Mgmt<br>MH (RS)</td>
+                <td colspan="2">Surveying-III<br>Field/119</td>
                 <td>-</td>
             </tr>
             <tr>
                 <td class="day-col">Thursday</td>
-             <td>-</td>
-            <td> Theory of Structure <br>SAP<br>121</td>
-                <td> Civil CAD-II <br>Mr. X (ConT)<br>121</td>
-                <td> Environmental Studies <br>AL<br>121</td>
-                <td colspan="2"> Water Supply Engineering <br>MH<br>Soil Lab (124)</td>
+                <td>-</td>
+                <td>Theory of Str.<br>SAP (121)</td>
+                <td>Civil CAD-II<br>Mr. X (121)</td>
+                <td>Env. Studies<br>AL (121)</td>
+                <td colspan="2">Water Supply<br>Soil Lab</td>
                 <td>-</td>
             </tr>
         </tbody>
     </table>
+
+    <div class="credit-footer">Created by: Tarek Shikdar</div>
 </div>
 
 </body>
